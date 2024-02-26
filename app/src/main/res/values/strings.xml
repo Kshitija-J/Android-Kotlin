@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">nfl</string>
+    <string name="teamID">Team ID</string>
+    <string name="teamName">Team Name</string>
+    <string name="logoFile">Logo</string>
+    <string name="Conference">Conference</string>
+    <string name="division">Division</string>
+    <string name="stadium">Stadium</string>
+</resources>
