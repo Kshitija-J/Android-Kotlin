@@ -1,6 +1,6 @@
 package com.example.nfl
 
-data class nflData(
+data class NFLTeam(
     val teamID: String,
     val teamName: String,
     val logoFile: String,

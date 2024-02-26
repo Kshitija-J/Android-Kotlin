@@ -5,19 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.nfl.databinding.FragmentNflBinding
+import com.example.nfl.databinding.FragmentTeamDetailBinding
 
-class nflFragment: Fragment() {
+class NFLTeamDetailFragment: Fragment() {
    // private lateinit var binding: FragmentNflBinding
-    private var _binding: FragmentNflBinding? = null
+    private var _binding: FragmentTeamDetailBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
             "Cannot access binding because it is null. Is the view visible?"
         }
-    private lateinit var data: nflData
+    private lateinit var data: NFLTeam
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        data = nflData(
+        data = NFLTeam(
             teamID = "100",
             teamName = "Indianapolis Colts",
             logoFile = "colts",
@@ -39,7 +39,7 @@ class nflFragment: Fragment() {
     ): View? {
 
         _binding =
-            FragmentNflBinding.inflate(layoutInflater, container, false)
+            FragmentTeamDetailBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
