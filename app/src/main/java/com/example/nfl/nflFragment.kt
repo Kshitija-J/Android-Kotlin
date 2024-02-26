@@ -8,7 +8,12 @@ import androidx.fragment.app.Fragment
 import com.example.nfl.databinding.FragmentNflBinding
 
 class nflFragment: Fragment() {
-    private lateinit var binding: FragmentNflBinding
+   // private lateinit var binding: FragmentNflBinding
+    private var _binding: FragmentNflBinding? = null
+    private val binding
+        get() = checkNotNull(_binding) {
+            "Cannot access binding because it is null. Is the view visible?"
+        }
     private lateinit var data: nflData
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +37,9 @@ class nflFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentNflBinding.inflate(inflater, container, false)
+
+        _binding =
+            FragmentNflBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -47,6 +54,9 @@ class nflFragment: Fragment() {
         binding.teamDivision.text = data.division
         binding.teamStadium.text = data.stadium
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 }
