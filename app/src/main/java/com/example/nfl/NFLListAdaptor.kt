@@ -13,6 +13,9 @@ class nflHolder(
     fun bind(team: NFLTeam) {
         binding.teamName.text = team.teamName
         binding.teamStadium.text = team.stadium
+        val resourceName = team.logoFile.substringBeforeLast(".")
+        val resourceId = itemView.context.resources.getIdentifier(resourceName, "drawable", itemView.context.packageName)
+        binding.imageView.setImageResource(resourceId)
 
 //        binding.root.setOnClickListener {
 //            Toast.makeText(
