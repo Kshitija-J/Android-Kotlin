@@ -10,26 +10,19 @@ class nflHolder(
     private val binding: ListItemTeamBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(team: NFLTeam) {
+    fun bind(team : NFLTeam, onTeamClicked: (teamId: String) -> Unit) {
         binding.teamName.text = team.teamName
         binding.teamStadium.text = team.stadium
+        binding.root.setOnClickListener {
+            onTeamClicked(team.teamID)
+        }
         val resourceName = team.logoFile.substringBeforeLast(".")
         val resourceId = itemView.context.resources.getIdentifier(resourceName, "drawable", itemView.context.packageName)
         binding.imageView.setImageResource(resourceId)
-
-//        binding.root.setOnClickListener {
-//            Toast.makeText(
-//                binding.root.context,
-//                "${team.teamName} clicked!",
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        }
     }
 }
 
-class NflListAdapter(
-    private val teams: List<NFLTeam>
-) : RecyclerView.Adapter<nflHolder>() {
+class NFLListAdapter(private val teams: List<NFLTeam>, private val onTeamClicked: (teamId: String) -> Unit) : RecyclerView.Adapter<nflHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -45,7 +38,7 @@ class NflListAdapter(
 //            binding.teamName.text = team.teamName
 //            binding.teamStadium.text = team.stadium
 //        }
-        holder.bind(team)
+        holder.bind(team, onTeamClicked)
     }
 
     override fun getItemCount() = teams.size
